@@ -32,7 +32,13 @@
   position: absolute;
   bottom: 0;
   padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 .btn-cart:hover{
   background-color: orange;
+}
+.btn-cart .btn-text{
+  margin-right: 5px;
 }
