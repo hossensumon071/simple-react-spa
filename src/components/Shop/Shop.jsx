@@ -11,16 +11,24 @@ const Shop = () => {
   useEffect(() => {
     fetch('products.json')
      .then(res => res.json())
-     .then(data => setProducts(data))
+     .then(data => {
+      setProducts(data)
+    })
   },[]);
 
   useEffect(() => {
     const storedCart = getStoredCart();
+    const savedCart = [];
     for(const key in storedCart) {
       const addedProduct = products.find(product => product.key === key);
-      console.log(addedProduct);
+      if(addedProduct){
+        const quantity = storedCart[key];
+        addedProduct.quantity = quantity
+        savedCart.push(addedProduct)
+      }
     }
-  },[])
+    setCart(savedCart);
+  },[products])
 
   const handleAddToCart = (product) => {
     console.log(product);
